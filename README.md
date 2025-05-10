@@ -34,11 +34,11 @@ Regular items contribute the most to sales: $776.32K
 Low Fat items: $425.36K
 
 ### 🔹 Outlet Type Performance:
-Outlet Type	Total Sales	Items	Avg Sales	Avg Rating
-Supermarket Type1	$787.55K	5,577	$141	4.0
-Grocery Store	$151.94K	1,083	$140	4.0
-Supermarket Type3	$130.71K	935	$140	4.0
-Supermarket Type2	$131.48K	928	$142	4.0
+Outlet Type	         Total Sales	Items	Avg Sales	Avg Rating
+Supermarket Type1	 $787.55K	    5,577	$141	    4.0
+Grocery Store	     $151.94K	    1,083	$140	    4.0
+Supermarket Type3	 $130.71K	    935	    $140	    4.0
+Supermarket Type2	 $131.48K	    928	    $142	    4.0
 
 ### 🔹 Location & Tier-wise Insights:
 Tier 3 cities have the highest contribution in sales: $472.13K
