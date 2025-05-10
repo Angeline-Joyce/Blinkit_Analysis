@@ -71,13 +71,14 @@ Integrate customer feedback or review sentiment if data is available.
 
 # SQL QUERY ON BLINKIT ANALYSIS
 
-/*BLINK IT Database Project*/
+**BLINK IT Database Project**
 
-/*View all data*/
+**View all data**
 
 SELECT * FROM Blinkit_Data;
 
--- DATA CLEANING: Standardize 'item_fat_content'
+**DATA CLEANING: Standardize 'item_fat_content'**
+```sql
 UPDATE Blinkit_Data
 SET item_fat_content = 
   CASE
@@ -85,26 +86,32 @@ SET item_fat_content =
     WHEN item_fat_content = 'reg' THEN 'Regular'
     ELSE item_fat_content 
   END;
-
--- Check distinct fat content values
+```
+**Check distinct fat content values**
+```sql
 SELECT DISTINCT item_fat_content FROM Blinkit_Data;
-
--- KPI METRICS
--- Total Sales
+```
+**KPI METRICS**
+**Total Sales**
+```sql
 SELECT CAST(SUM(sales) AS DECIMAL(10,2)) AS total_sales FROM Blinkit_Data;
-
--- Average Sales
+```
+**Average Sales**
+```sql
 SELECT CAST(AVG(sales) AS DECIMAL(10,2)) AS average_sales FROM Blinkit_Data;
-
--- Number of Items
+```
+**Number of Items**
+```sql
 SELECT COUNT(*) AS item_number FROM Blinkit_Data;
-
--- Average Rating
+```
+**Average Rating**
+```sql
 SELECT CAST(AVG(rating) AS DECIMAL(10,2)) AS avg_rating FROM Blinkit_Data;
+```
+**BUSINESS ANALYSIS**
 
--- BUSINESS ANALYSIS
-
--- Total Sales by Fat Content
+**Total Sales by Fat Content**
+```sql
 SELECT item_fat_content,
        CONCAT(CAST(SUM(sales)/1000 AS DECIMAL(10,2)), ' K') AS total_sales_thousands,
        CAST(AVG(sales) AS DECIMAL(10,2)) AS average_sales,
@@ -113,8 +120,9 @@ SELECT item_fat_content,
 FROM Blinkit_Data
 GROUP BY item_fat_content
 ORDER BY total_sales_thousands DESC;
-
--- Total Sales by Item Type
+```
+**Total Sales by Item Type**
+```sql
 SELECT item_type,
        CONCAT(CAST(SUM(sales)/1000 AS DECIMAL(10,2)), ' K') AS total_sales_thousands,
        CAST(AVG(sales) AS DECIMAL(10,2)) AS avg_sales,
@@ -123,15 +131,17 @@ SELECT item_type,
 FROM Blinkit_Data
 GROUP BY item_type
 ORDER BY total_sales_thousands DESC;
-
--- Total Sales by Outlet Location and Fat Content
+```
+**Total Sales by Outlet Location and Fat Content**
+```sql
 SELECT outlet_location_type, item_fat_content,
        CONCAT(CAST(SUM(sales)/1000 AS DECIMAL(10,2)), ' K') AS total_sales
 FROM Blinkit_Data
 GROUP BY outlet_location_type, item_fat_content
 ORDER BY total_sales DESC;
-
--- Pivot: Total Sales by Outlet Location and Fat Content
+```
+**Pivot: Total Sales by Outlet Location and Fat Content**
+```sql
 SELECT outlet_location_type,
        [Low Fat] AS low_fat_sales,
        [Regular] AS regular_sales
@@ -146,8 +156,9 @@ PIVOT (
   FOR item_fat_content IN ([Low Fat], [Regular])
 ) AS PivotTable
 ORDER BY outlet_location_type;
-
--- Pivot: Average Sales by Outlet Location and Fat Content
+```
+**Pivot: Average Sales by Outlet Location and Fat Content**
+```sql
 SELECT outlet_location_type,
        [Low Fat] AS low_fat_avg_sales,
        [Regular] AS regular_avg_sales
@@ -162,8 +173,9 @@ PIVOT (
   FOR item_fat_content IN ([Low Fat], [Regular])
 ) AS PivotTable
 ORDER BY outlet_location_type;
-
--- Pivot: Number of Items by Outlet Location and Fat Content
+```
+**Pivot: Number of Items by Outlet Location and Fat Content**
+```sql
 SELECT outlet_location_type,
        [Low Fat] AS low_fat_items,
        [Regular] AS regular_items
@@ -178,8 +190,9 @@ PIVOT (
   FOR item_fat_content IN ([Low Fat], [Regular])
 ) AS PivotTable
 ORDER BY outlet_location_type;
-
--- Total Sales by Outlet Establishment Year
+```
+**Total Sales by Outlet Establishment Year**
+```sql
 SELECT outlet_establishment_year,
        CAST(SUM(sales) AS DECIMAL(10,2)) AS total_sales,
        CAST(AVG(sales) AS DECIMAL(10,2)) AS average_sales,
@@ -188,16 +201,18 @@ SELECT outlet_establishment_year,
 FROM Blinkit_Data
 GROUP BY outlet_establishment_year
 ORDER BY outlet_establishment_year ASC;
-
--- Percentage of Sales by Outlet Size
+```
+**Percentage of Sales by Outlet Size**
+```sql
 SELECT outlet_size,
        CAST(SUM(sales) AS DECIMAL(10,2)) AS total_sales,
        CAST(SUM(sales) * 100.00 / SUM(SUM(sales)) OVER() AS DECIMAL(10,2)) AS sales_percentage
 FROM Blinkit_Data
 GROUP BY outlet_size
 ORDER BY total_sales DESC;
-
--- Sales by Outlet Location
+```
+**Sales by Outlet Location**
+```sql
 SELECT outlet_location_type,
        CAST(SUM(sales) AS DECIMAL(10,2)) AS total_sales,
        CAST(SUM(sales) * 100.00 / SUM(SUM(sales)) OVER() AS DECIMAL(10,2)) AS sales_percentage,
@@ -207,8 +222,9 @@ SELECT outlet_location_type,
 FROM Blinkit_Data
 GROUP BY outlet_location_type
 ORDER BY total_sales DESC;
-
--- All Metrics by Outlet Type
+```
+**All Metrics by Outlet Type**
+```sql
 SELECT outlet_type,
        CAST(SUM(sales) AS DECIMAL(10,2)) AS total_sales,
        CAST(SUM(sales) * 100.00 / SUM(SUM(sales)) OVER() AS DECIMAL(10,2)) AS sales_percentage,
@@ -218,7 +234,7 @@ SELECT outlet_type,
 FROM Blinkit_Data
 GROUP BY outlet_type
 ORDER BY total_sales DESC;
-
+```
 
 ### Author:
 Angeline Joyce J
