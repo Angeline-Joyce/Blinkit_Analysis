@@ -74,9 +74,9 @@ Integrate customer feedback or review sentiment if data is available.
 **BLINK IT Database Project**
 
 **View all data**
-
+```sql
 SELECT * FROM Blinkit_Data;
-
+```
 **DATA CLEANING: Standardize 'item_fat_content'**
 ```sql
 UPDATE Blinkit_Data
