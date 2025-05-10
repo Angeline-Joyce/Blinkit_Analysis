@@ -4,6 +4,9 @@ End to End Project on creating Power BI dashboard analyzing Blinkit’s sales pe
 # 🛒 Blinkit Sales Performance Dashboard
 This Power BI dashboard visualizes the sales performance and product distribution of Blinkit – India’s last-minute grocery delivery app. It is designed to provide actionable insights into total sales, item distribution, outlet performance, and customer ratings across various outlet types and regions.
 
+Click on the URL to view the dashboard
+### Dashboard : https://app.powerbi.com/view?r=eyJrIjoiNTZlYTZhYjYtNDc5My00OTMyLWEzMmItYzJiMjZhNmNmNGU5IiwidCI6IjVlMWVlNzI5LWI1M2MtNDJmMS05NzU4LTNjOGFkYWZlMTEwMCJ9
+
 ## 📊 Key Metrics Tracked:
 Total Sales: $1.20M
 
